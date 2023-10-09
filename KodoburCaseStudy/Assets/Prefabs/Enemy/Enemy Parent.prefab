@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 2373391618145741435}
+  attackCollider: {fileID: 8369060200215584328}
 --- !u!1 &8328862854008161296
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,3 +226,4 @@ MonoBehaviour:
   currentHp: 100
   gameSettings: {fileID: 11400000, guid: ff382bef29d61534c914f8335f8cce5f, type: 2}
   attackDamage: 10
+  enemyAttackRange: {fileID: 8304521945158556265}

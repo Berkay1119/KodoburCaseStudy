@@ -48,4 +48,15 @@ public class Player : Character
     {
         EventManager.OnPlayerDied();
     }
+
+    public Gun GetGun()
+    {
+        return gun;
+    }
+
+    public void Heal(int healAmount)
+    {
+        currentHp += healAmount;
+        currentHp = Mathf.Clamp(currentHp, 0, maxHp);
+    }
 }

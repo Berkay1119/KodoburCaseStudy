@@ -9,7 +9,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private int startingBullet;
     [SerializeField] private int maximumBullet;
     [SerializeField] private int attackDamage=10;
-    private int _currentBullet;
+    [SerializeField]private int _currentBullet;
 
     private void Start()
     {
@@ -32,7 +32,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-    private int AddBulletReturnExcessive(int amount)
+    public int AddBulletReturnExcessive(int amount)
     {
         _currentBullet += amount;
         if (_currentBullet>maximumBullet)

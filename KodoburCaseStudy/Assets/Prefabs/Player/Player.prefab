@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   experiencePoint: 0
-  maxHp: 0
+  maxHp: 100
   currentHp: 100
   gameSettings: {fileID: 11400000, guid: ff382bef29d61534c914f8335f8cce5f, type: 2}
   killCount: 0
