@@ -6,20 +6,34 @@ using UnityEngine;
 public class Player : Character
 {
     [SerializeField] private int killCount;
+    [SerializeField] private int talentPoints;
+
+    private void Awake()
+    {
+        experiencePoint = 0;
+    }
 
     private void OnEnable()
     {
-        EventManager.EnemyDied += IncreaseKillCount;
+        EventManager.EnemyDied += EnemyKilled;
     }
 
     private void OnDisable()
     {
-        EventManager.EnemyDied -= IncreaseKillCount;
+        EventManager.EnemyDied -= EnemyKilled;
     }
 
-    private void IncreaseKillCount()
+    private void EnemyKilled(Enemy enemy)
     {
         killCount++;
+        experiencePoint += enemy.GetExperiencePoint();
+        CalculateLevel();
+        EventManager.OnRefreshUI();
+    }
+
+    private void CalculateLevel()
+    {
+        
     }
 
     private void Update()

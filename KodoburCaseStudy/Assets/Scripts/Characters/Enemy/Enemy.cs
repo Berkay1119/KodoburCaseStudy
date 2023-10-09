@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Enemy : Character
 {
-    
     protected override void Die()
     {
-        EventManager.OnEnemyDied();
+        EventManager.OnEnemyDied(this);
+    }
+
+    public int GetExperiencePoint()
+    {
+        return experiencePoint;
     }
 }

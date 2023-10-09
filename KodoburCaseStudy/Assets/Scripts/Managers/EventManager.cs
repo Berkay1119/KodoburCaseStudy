@@ -5,16 +5,23 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    public static event Action EnemyDied;
+    public delegate void EnemyEvent(Enemy enemy);
+    public static event EnemyEvent EnemyDied;
     public static event Action PlayerDied;
+    public static event Action RefreshUI;
 
-    public static void OnEnemyDied()
+    public static void OnEnemyDied(Enemy enemy)
     {
-        EnemyDied?.Invoke();
+        EnemyDied?.Invoke(enemy);
     }
 
     public static void OnPlayerDied()
     {
         PlayerDied?.Invoke();
+    }
+
+    public static void OnRefreshUI()
+    {
+        RefreshUI?.Invoke();
     }
 }
