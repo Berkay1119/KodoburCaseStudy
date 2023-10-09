@@ -7,6 +7,7 @@ public class Player : Character
 {
     [SerializeField] private int killCount;
     [SerializeField] private int talentPoints;
+    [SerializeField] protected Gun gun;
 
     private void Awake()
     {

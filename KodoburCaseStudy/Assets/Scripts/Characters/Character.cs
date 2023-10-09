@@ -9,7 +9,7 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected int experiencePoint;
     [SerializeField] private int maxHp;
     [SerializeField] private int currentHp=100;
-    [SerializeField] protected Gun gun;
+    [SerializeField] protected GameSettings gameSettings;
 
     public void TakeDamage(int damageAmount)
     {
