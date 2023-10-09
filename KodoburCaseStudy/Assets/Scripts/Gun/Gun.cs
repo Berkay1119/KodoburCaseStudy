@@ -8,22 +8,16 @@ public class Gun : MonoBehaviour
     [SerializeField] private Camera playerCamera;
     [SerializeField] private int startingBullet;
     [SerializeField] private int maximumBullet;
+    [SerializeField] private int attackDamage=10;
     private int _currentBullet;
 
     private void Start()
     {
         _currentBullet = startingBullet;
     }
+    
 
-    private void Update()
-    {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Shoot();
-        }
-    }
-
-    private void Shoot()
+    public void Shoot()
     {
         if (_currentBullet == 0) { return; }
         _currentBullet -= 1;
@@ -31,6 +25,10 @@ public class Gun : MonoBehaviour
         if (Physics.Raycast(ray,out var hit))
         {
             print(hit.transform.name+" has been shot");
+            if (hit.transform.TryGetComponent(out Character character))
+            {
+                character.TakeDamage(attackDamage);
+            }
         }
     }
 
