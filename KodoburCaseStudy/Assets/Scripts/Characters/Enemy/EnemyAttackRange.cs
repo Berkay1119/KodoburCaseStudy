@@ -6,7 +6,13 @@ using UnityEngine;
 public class EnemyAttackRange : MonoBehaviour
 {
     [SerializeField] private Enemy enemy;
+    [SerializeField] private SphereCollider attackCollider;
     private Coroutine _shootRoutine;
+
+    public void AdjustCollider(float radius)
+    {
+        attackCollider.radius = radius;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
