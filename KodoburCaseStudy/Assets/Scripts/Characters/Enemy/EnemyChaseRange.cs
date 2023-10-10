@@ -18,7 +18,11 @@ public class EnemyChaseRange : MonoBehaviour
         {
             if (hit.transform.TryGetComponent(out Player player))
             {
-                _enemy.ChasePlayer(player);
+                if (_enemy.GetCurrentState() is PatrolState)
+                {
+                    _enemy.ChasePlayer();
+                }
+                
             }
         }
     }

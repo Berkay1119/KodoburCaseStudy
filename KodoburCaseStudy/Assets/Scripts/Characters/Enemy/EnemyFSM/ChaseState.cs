@@ -4,7 +4,7 @@ using UnityEngine.AI;
 public class ChaseState : EnemyState
 {
     private Player _player;
-    public ChaseState(Enemy enemy, NavMeshAgent navMeshAgent, Player player) : base(enemy, navMeshAgent)
+    public ChaseState(Enemy enemy, NavMeshAgent navMeshAgent, Player player) : base(enemy, navMeshAgent,player)
     {
         _player = player;
     }

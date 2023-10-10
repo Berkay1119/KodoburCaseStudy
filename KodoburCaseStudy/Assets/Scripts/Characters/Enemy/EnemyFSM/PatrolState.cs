@@ -8,14 +8,14 @@ public class PatrolState : EnemyState
     private int _currentDestinationIndex;
     
 
-    public PatrolState(Enemy enemy, NavMeshAgent navMeshAgent) : base(enemy, navMeshAgent)
+    public PatrolState(Enemy enemy, NavMeshAgent navMeshAgent, Player player) : base(enemy, navMeshAgent, player)
     {
         
     }
     
     protected override void OnEnter()
     {
-        _patrolPoints = _enemy.GetPatrolPoints();
+        _patrolPoints = Enemy.GetPatrolPoints();
         ReturnToTheFirstPatrolPoint();
     }
 

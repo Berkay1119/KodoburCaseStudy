@@ -11,6 +11,7 @@ public class Enemy : Character
     [SerializeField] private int attackDamage;
     [SerializeField] private EnemyAttackRange enemyAttackRange;
     private EnemyState _state;
+    private Player _player;
 
     private void Awake()
     {
@@ -19,7 +20,8 @@ public class Enemy : Character
 
     private void Start()
     {
-        _state = new PatrolState(this, navMeshAgent);
+        _player = FindObjectOfType<Player>();
+        _state = new PatrolState(this, navMeshAgent, _player);
     }
 
     private void Update()
@@ -37,6 +39,11 @@ public class Enemy : Character
         return experiencePoint;
     }
 
+    public void Shoot(Player player)
+    {
+        ChangeState(new ShootingState(this,navMeshAgent,player));
+    }
+    
     public IEnumerator ShootRoutine(Player player)
     {
         while (true)
@@ -51,19 +58,19 @@ public class Enemy : Character
         return patrolPoints;
     }
 
-    public void ChasePlayer(Player player)
+    public void ChasePlayer()
     {
-        ChangeState(new ChaseState(this,navMeshAgent,player));
+        ChangeState(new ChaseState(this,navMeshAgent,_player));
     }
     
     public void ReturnToYourPatrol()
     {
-        ChangeState(new PatrolState(this,navMeshAgent));
+        ChangeState(new PatrolState(this,navMeshAgent,_player));
     }
 
     private void ChangeState(EnemyState newState)
     {
-        _state.OnExit();
+        _state?.OnExit();
         _state = newState;
     }
 

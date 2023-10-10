@@ -6,12 +6,14 @@ using UnityEngine.AI;
 
 public abstract class EnemyState
 {
-    protected Enemy _enemy;
+    protected Enemy Enemy;
     protected readonly NavMeshAgent NavMeshAgent;
-    protected EnemyState(Enemy enemy, NavMeshAgent navMeshAgent)
+    protected Player Player;
+    protected EnemyState(Enemy enemy, NavMeshAgent navMeshAgent, Player player)
     {
-        _enemy=enemy;
+        Enemy=enemy;
         NavMeshAgent = navMeshAgent;
+        Player = player;
         OnEnter();
     }
 

@@ -18,12 +18,21 @@ public class EnemyAttackRange : MonoBehaviour
     {
         if (other.TryGetComponent(out Player player))
         {
-            _shootRoutine = StartCoroutine(enemy.ShootRoutine(player));
+            if (enemy.GetCurrentState() is ChaseState)
+            {
+                enemy.Shoot(player);
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        StopCoroutine(_shootRoutine);
+        if (other.TryGetComponent(out Player player))
+        {
+            if (enemy.GetCurrentState() is ShootingState)
+            {
+                enemy.ChasePlayer();
+            }
+        }
     }
 }
