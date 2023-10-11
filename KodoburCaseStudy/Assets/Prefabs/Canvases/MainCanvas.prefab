@@ -458,6 +458,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Talent Screen
       objectReference: {fileID: 0}
+    - target: {fileID: 9063306617595286990, guid: 17ad51a8fe4ea64479d96ebe90e5fec0, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -562,6 +566,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4050816478255647116, guid: de82e3f9cc05cf044821effb88a94d52, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669324553232860378, guid: de82e3f9cc05cf044821effb88a94d52, type: 3}
+      propertyPath: m_PresetInfoIsWorld
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7748472393426400685, guid: de82e3f9cc05cf044821effb88a94d52, type: 3}

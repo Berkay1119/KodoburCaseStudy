@@ -22,9 +22,9 @@ public class Gun : MonoBehaviour
     private void Start()
     {
         currentBullet = startingBullet;
-        EventManager.OnAmmoUpdate(currentBullet);
         SetAmmoLevel(_ammoLevel);
         SetDamageLevel(_damageLevel);
+        EventManager.OnAmmoUpdate(currentBullet,(float)currentBullet/maximumBullet);
     }
 
     private void OnEnable()
@@ -77,7 +77,7 @@ public class Gun : MonoBehaviour
     {
         if (currentBullet == 0) { return; }
         currentBullet -= 1;
-        EventManager.OnAmmoUpdate(currentBullet);
+        EventManager.OnAmmoUpdate(currentBullet,(float)currentBullet/maximumBullet);
         Ray ray = playerCamera.ScreenPointToRay(new Vector3((float)Screen.width / 2, (float)Screen.height / 2, 0));
         if (Physics.Raycast(ray,out var hit))
         {
@@ -118,7 +118,7 @@ public class Gun : MonoBehaviour
              excessiveBullet = currentBullet - maximumBullet;
             currentBullet = maximumBullet;
         }
-        EventManager.OnAmmoUpdate(currentBullet);
+        EventManager.OnAmmoUpdate(currentBullet,(float)currentBullet/maximumBullet);
         return excessiveBullet;
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8b21e32d2a4b8fa31397a291890bd6, type: 3}
   m_Name: Game Settings
   m_EditorClassIdentifier: 
-  enemyShootCooldown: 3
+  enemyShootCooldown: 1
   enemyAttackRadius: 5
   ammoAmountForEachCollectible: 3
   healthAmountForEachCollectible: 10
@@ -21,7 +21,7 @@ MonoBehaviour:
   maxAmmoAmount: 3
   maxHealthAmount: 1
   enemySpawnCooldown: 10
-  maxEnemyAmount: 5
+  maxEnemyAmount: 1
   isEnemyMovementRandom: 0
   levelPassXp: 64000000640000006400000064000000581b0000
   pierceShotTalentPoint: 3

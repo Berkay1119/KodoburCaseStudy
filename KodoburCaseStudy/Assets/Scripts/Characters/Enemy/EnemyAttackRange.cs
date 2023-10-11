@@ -21,13 +21,20 @@ public class EnemyAttackRange : MonoBehaviour
         attackCollider.radius = radius;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.TryGetComponent(out Player player))
         {
             if (enemy.GetCurrentState() is ChaseState)
             {
-                enemy.Shoot();
+                if (Physics.Raycast(enemy.transform.position,player.transform.position-enemy.transform.position,out var hit))
+                {
+                    if (hit.transform.TryGetComponent(out Player localPlayer))
+                    {
+                        enemy.Shoot();
+                    }
+                }
+                
             }
         }
     }

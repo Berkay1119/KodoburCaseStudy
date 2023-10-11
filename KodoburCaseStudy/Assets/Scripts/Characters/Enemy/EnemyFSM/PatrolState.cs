@@ -6,7 +6,7 @@ public class PatrolState : EnemyState
 {
     private Transform[] _patrolPoints;
     private int _currentDestinationIndex;
-    
+    private static readonly int Blend = Animator.StringToHash("Blend");
 
     public PatrolState(Enemy enemy, NavMeshAgent navMeshAgent, Player player) : base(enemy, navMeshAgent, player)
     {
@@ -17,6 +17,7 @@ public class PatrolState : EnemyState
     {
         _patrolPoints = Enemy.GetPatrolPoints().transforms;
         ReturnToTheFirstPatrolPoint();
+        Enemy.GetAnimator().SetFloat(Blend,0.5f);
     }
 
     private void ReturnToTheFirstPatrolPoint()

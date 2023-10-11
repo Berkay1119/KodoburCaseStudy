@@ -13,6 +13,7 @@ public class Enemy : Character, ISpawnable
     private Player _player;
     private EnemyPatrolManager _patrolManager;
     [SerializeField] private EnemyHealthCanvas enemyHealthCanvas;
+    [SerializeField] private Animator animator;
 
     private void Awake()
     {
@@ -64,6 +65,7 @@ public class Enemy : Character, ISpawnable
     {
         while (true)
         {
+            yield return new WaitForSeconds(gameSettings.enemyShootCooldown);
             TrailRenderer bullet=Instantiate(bulletPrefab);
             var position = transform.position;
             bullet.AddPosition(position);
@@ -71,7 +73,6 @@ public class Enemy : Character, ISpawnable
                 bullet.transform.position = (_player.transform.position);
             }
             _player.TakeDamage(attackDamage);
-            yield return new WaitForSeconds(gameSettings.enemyShootCooldown);
         }
     }
 
@@ -154,5 +155,10 @@ public class Enemy : Character, ISpawnable
     {
         base.TakeDamage(damageAmount);
         enemyHealthCanvas.RefreshHealth((float)currentHp / maxHp);
+    }
+
+    public Animator GetAnimator()
+    {
+        return animator;
     }
 }

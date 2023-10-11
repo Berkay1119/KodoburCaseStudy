@@ -9,6 +9,8 @@ public class EventManager : MonoBehaviour
     public delegate void CollectibleEvent(Collectible spawnable);
     public delegate void FloatEvent(float floatNumber);
     public delegate void IntEvent(int integer);
+
+    public delegate void AmmoEvent(int integer, float floatNumber);
     public delegate void LevelEvent(float levelRatio,int levelCount);
     public delegate void UpgradeEvent(Upgrades upgrades);
     public static event EnemyEvent EnemyDied;
@@ -16,7 +18,7 @@ public class EventManager : MonoBehaviour
     public static event FloatEvent RefreshHealthUI;
     public static event CollectibleEvent CollectibleCollected;
     public static event LevelEvent LevelUpdate;
-    public static event IntEvent AmmoUpdate;
+    public static event AmmoEvent AmmoUpdate;
     public static event UpgradeEvent Upgrade;
     public static event UpgradeEvent MaxUpgradeReached;
     public static event IntEvent RefreshTalentPoint;
@@ -48,9 +50,9 @@ public class EventManager : MonoBehaviour
         LevelUpdate?.Invoke(levelRatio, levelCount);
     }
 
-    public static void OnAmmoUpdate(int integer)
+    public static void OnAmmoUpdate(int integer, float floatNumber)
     {
-        AmmoUpdate?.Invoke(integer);
+        AmmoUpdate?.Invoke(integer,floatNumber);
     }
 
     public static void OnUpgrade(Upgrades upgrades)

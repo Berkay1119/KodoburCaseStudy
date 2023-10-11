@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TalentCanvas : MonoBehaviour
@@ -8,6 +9,7 @@ public class TalentCanvas : MonoBehaviour
     [SerializeField] private GameObject characterUpgradeLayout;
     [SerializeField] private GameObject gunUpgradeLayout;
     [SerializeField] private GameObject backgroundCanvas;
+    [SerializeField] private TextMeshProUGUI talentPointDisplay;
     private int _talentPoint;
 
     private void OnEnable()
@@ -23,6 +25,7 @@ public class TalentCanvas : MonoBehaviour
     private void RefreshTalentPoint(int talentPoint)
     {
         _talentPoint = talentPoint;
+        talentPointDisplay.text = "Talent Point: "  + _talentPoint;
     }
 
 
