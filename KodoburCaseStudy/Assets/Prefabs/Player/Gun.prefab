@@ -81,7 +81,7 @@ MonoBehaviour:
   playerCamera: {fileID: 0}
   startingBullet: 5
   maximumBullet: 10
-  attackDamage: 10
+  attackDamage: 50
   currentBullet: 0
   bulletPrefab: {fileID: 6670010285891972953, guid: b474606ec76a6fb408d24b6d3afd19da, type: 3}
   gunTip: {fileID: 7985440955271948828}
