@@ -14,9 +14,9 @@ public class EnemyHealthCanvas : MonoBehaviour
         transform.LookAt(_player.transform);
     }
 
-    public void RefreshHealth(float currentHp)
+    public void RefreshHealth(float currentHpRatio)
     {
-        slider.value = currentHp;
+        slider.value = currentHpRatio;
     }
 
     public void SetPlayer(Player player)

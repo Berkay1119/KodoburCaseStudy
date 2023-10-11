@@ -23,8 +23,7 @@ public class GameSettings:ScriptableObject
 
     [Header("Level Settings")] 
     public int[] levelPassXp;
-    public int pierceShotTalentPoint;
-    
+
     [Header("Character Talents")]
     public SpeedTalent[] speedTalentLevels;
     public float[] jumpHeightLevels;

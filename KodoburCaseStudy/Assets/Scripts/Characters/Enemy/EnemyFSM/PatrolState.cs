@@ -31,15 +31,7 @@ public class PatrolState : EnemyState
         if (NavMeshAgent.remainingDistance<1)
         {
             _currentDestinationIndex++;
-            if (Enemy.IsMovementRandom())
-            {
-                NavMeshAgent.destination = Enemy.GetRandomPatrolPoint();
-            }
-            else
-            {
-                NavMeshAgent.destination = _patrolPoints[_currentDestinationIndex % _patrolPoints.Length].position;
-            }
-            
+            NavMeshAgent.destination = Enemy.IsMovementRandom() ? Enemy.GetRandomPatrolPoint() : _patrolPoints[_currentDestinationIndex % _patrolPoints.Length].position;
         }
     }
 

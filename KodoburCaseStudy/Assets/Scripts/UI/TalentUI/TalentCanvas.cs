@@ -15,11 +15,18 @@ public class TalentCanvas : MonoBehaviour
     private void OnEnable()
     {
         EventManager.RefreshTalentPoint += RefreshTalentPoint;
+        EventManager.PlayerDied += DisableThis;
+    }
+
+    private void DisableThis()
+    {
+        this.enabled = false;
     }
 
     private void OnDisable()
     {
         EventManager.RefreshTalentPoint -= RefreshTalentPoint;
+        EventManager.PlayerDied -= DisableThis;
     }
 
     private void RefreshTalentPoint(int talentPoint)

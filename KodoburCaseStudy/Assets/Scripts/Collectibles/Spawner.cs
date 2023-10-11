@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject ammoGameObject;
+    [SerializeField] private GameObject gameObjectToSpawn;
 
     [SerializeField] private int poolAmount;
 
@@ -64,7 +65,7 @@ public class Spawner : MonoBehaviour
     {
         for (int i = 0; i < poolAmount; i++)
         {
-            ISpawnable spawnable=Instantiate(ammoGameObject, transform).GetComponent<ISpawnable>();
+            ISpawnable spawnable=Instantiate(gameObjectToSpawn, transform).GetComponent<ISpawnable>();
             spawnable.ReturnToPool();
             _pool.Add(spawnable);
         }

@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bafe054a1af4db14bba18bbcaad71ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoGameObject: {fileID: 7481604779606723690, guid: 00ed92288f1ba98488178d04ccf2efa5, type: 3}
+  gameObjectToSpawn: {fileID: 7481604779606723690, guid: 00ed92288f1ba98488178d04ccf2efa5, type: 3}
   poolAmount: 5
   gameSettings: {fileID: 11400000, guid: ff382bef29d61534c914f8335f8cce5f, type: 2}
   candidateSpawnLocations:

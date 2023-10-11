@@ -14,9 +14,7 @@ public class PlayerMovementController : MonoBehaviour
     private int _movementLevel;
     private int _jumpLevel;
     private bool _isStopped;
-
-    //TODO: Revise this script.
-
+    
     private void Awake()
     {
         SetSpeedLevel();

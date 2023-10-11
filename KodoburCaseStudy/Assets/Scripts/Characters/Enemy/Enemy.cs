@@ -76,8 +76,7 @@ public class Enemy : Character, ISpawnable
             _player.TakeDamage(attackDamage);
         }
     }
-
-    //TODO: EnemySpawner should give PatrolPoints to the enemy.
+    
     public PatrolPoints GetPatrolPoints()
     {
         return _patrolManager.GetPatrolPoints();

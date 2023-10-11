@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: ammoGameObject
       value: 
       objectReference: {fileID: 7481604779606723690, guid: d500b33ea9def1342b28c9ca061d3ebb, type: 3}
+    - target: {fileID: 1017831437232858391, guid: 7113008e12116f24ca567a21bb49d87c, type: 3}
+      propertyPath: gameObjectToSpawn
+      value: 
+      objectReference: {fileID: 7481604779606723690, guid: d500b33ea9def1342b28c9ca061d3ebb, type: 3}
     - target: {fileID: 4354367484553541745, guid: 7113008e12116f24ca567a21bb49d87c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 19.75

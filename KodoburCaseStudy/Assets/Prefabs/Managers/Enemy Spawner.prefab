@@ -113,6 +113,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1494260778283744230, guid: 7e60b3791751a0c4ca7faef2ba83d8f0, type: 3}
     - target: {fileID: 1017831437232858391, guid: 7113008e12116f24ca567a21bb49d87c, type: 3}
+      propertyPath: gameObjectToSpawn
+      value: 
+      objectReference: {fileID: 1494260778283744230, guid: 7e60b3791751a0c4ca7faef2ba83d8f0, type: 3}
+    - target: {fileID: 1017831437232858391, guid: 7113008e12116f24ca567a21bb49d87c, type: 3}
       propertyPath: candidateSpawnLocations.Array.size
       value: 5
       objectReference: {fileID: 0}
