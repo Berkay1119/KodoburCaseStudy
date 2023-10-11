@@ -11,7 +11,7 @@ public class ShootingState: EnemyState
 
     protected override void OnEnter()
     {
-        _shootRoutine = Enemy.StartCoroutine(Enemy.ShootRoutine(Player));
+        _shootRoutine = Enemy.StartCoroutine(Enemy.ShootRoutine());
         NavMeshAgent.isStopped = true;
     }
 

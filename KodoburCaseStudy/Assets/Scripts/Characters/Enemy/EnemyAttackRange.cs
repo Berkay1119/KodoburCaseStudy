@@ -2,14 +2,21 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class EnemyAttackRange : MonoBehaviour
 {
     [SerializeField] private Enemy enemy;
     [SerializeField] private SphereCollider attackCollider;
+    [SerializeField] private GameSettings gameSettings;
     private Coroutine _shootRoutine;
 
-    public void AdjustCollider(float radius)
+    private void Awake()
+    {
+        AdjustCollider(gameSettings.enemyAttackRadius);
+    }
+
+    private void AdjustCollider(float radius)
     {
         attackCollider.radius = radius;
     }
@@ -20,7 +27,7 @@ public class EnemyAttackRange : MonoBehaviour
         {
             if (enemy.GetCurrentState() is ChaseState)
             {
-                enemy.Shoot(player);
+                enemy.Shoot();
             }
         }
     }

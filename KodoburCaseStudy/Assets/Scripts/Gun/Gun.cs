@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Gun : MonoBehaviour
 {
@@ -9,18 +10,18 @@ public class Gun : MonoBehaviour
     [SerializeField] private int startingBullet;
     [SerializeField] private int maximumBullet;
     [SerializeField] private int attackDamage=10;
-    [SerializeField]private int _currentBullet;
+    [SerializeField] private int currentBullet;
 
     private void Start()
     {
-        _currentBullet = startingBullet;
+        currentBullet = startingBullet;
     }
     
 
     public void Shoot()
     {
-        if (_currentBullet == 0) { return; }
-        _currentBullet -= 1;
+        if (currentBullet == 0) { return; }
+        currentBullet -= 1;
         Ray ray = playerCamera.ScreenPointToRay(new Vector3((float)Screen.width / 2, (float)Screen.height / 2, 0));
         if (Physics.Raycast(ray,out var hit))
         {
@@ -34,11 +35,11 @@ public class Gun : MonoBehaviour
 
     public int AddBulletReturnExcessive(int amount)
     {
-        _currentBullet += amount;
-        if (_currentBullet>maximumBullet)
+        currentBullet += amount;
+        if (currentBullet>maximumBullet)
         {
-            int excessiveBullet = _currentBullet - maximumBullet;
-            _currentBullet = maximumBullet;
+            int excessiveBullet = currentBullet - maximumBullet;
+            currentBullet = maximumBullet;
             return excessiveBullet;
         }
         return 0;

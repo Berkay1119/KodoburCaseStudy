@@ -7,7 +7,7 @@ public class Player : Character
 {
     [SerializeField] private int killCount;
     [SerializeField] private int talentPoints;
-    [SerializeField] protected Gun gun;
+    [SerializeField] private Gun gun;
 
     private void Awake()
     {
@@ -49,14 +49,14 @@ public class Player : Character
         EventManager.OnPlayerDied();
     }
 
-    public Gun GetGun()
-    {
-        return gun;
-    }
-
     public void Heal(int healAmount)
     {
         currentHp += healAmount;
         currentHp = Mathf.Clamp(currentHp, 0, maxHp);
+    }
+
+    public int AddBulletReturnExcessive(int contentAmount)
+    {
+        return gun.AddBulletReturnExcessive(contentAmount);
     }
 }

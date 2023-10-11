@@ -10,6 +10,8 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float jumpHeight;
     private Vector3 _moveVector;
     private bool _onJump;
+    
+    //TODO: Revise this script.
     private void Update()
     {
         _moveVector= new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));

@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public abstract class EnemyState
 {
-    protected Enemy Enemy;
+    protected readonly Enemy Enemy;
     protected readonly NavMeshAgent NavMeshAgent;
     protected Player Player;
     protected EnemyState(Enemy enemy, NavMeshAgent navMeshAgent, Player player)

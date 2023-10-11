@@ -125,6 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 2373391618145741435}
   attackCollider: {fileID: 8369060200215584328}
+  gameSettings: {fileID: 11400000, guid: ff382bef29d61534c914f8335f8cce5f, type: 2}
 --- !u!1 &6820622669798237199
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5440aa1ceba5a394b808820d93d07fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 2373391618145741435}
+  enemy: {fileID: 2373391618145741435}
 --- !u!1 &8328862854008161296
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,4 +324,3 @@ MonoBehaviour:
   - {x: 9, y: 0, z: -7.75}
   - {x: 21, y: 0, z: -7.75}
   attackDamage: 10
-  enemyAttackRange: {fileID: 8304521945158556265}

@@ -9,14 +9,8 @@ public class Enemy : Character
     [SerializeField] private NavMeshAgent navMeshAgent;
     [SerializeField] private Vector3[]patrolPoints;
     [SerializeField] private int attackDamage;
-    [SerializeField] private EnemyAttackRange enemyAttackRange;
     private EnemyState _state;
     private Player _player;
-
-    private void Awake()
-    {
-        enemyAttackRange.AdjustCollider(gameSettings.enemyAttackRadius);
-    }
 
     private void Start()
     {
@@ -39,20 +33,21 @@ public class Enemy : Character
         return experiencePoint;
     }
 
-    public void Shoot(Player player)
+    public void Shoot()
     {
-        ChangeState(new ShootingState(this,navMeshAgent,player));
+        ChangeState(new ShootingState(this,navMeshAgent,_player));
     }
     
-    public IEnumerator ShootRoutine(Player player)
+    public IEnumerator ShootRoutine()
     {
         while (true)
         {
-            player.TakeDamage(attackDamage);
+            _player.TakeDamage(attackDamage);
             yield return new WaitForSeconds(gameSettings.enemyShootCooldown);
         }
     }
 
+    //TODO: EnemySpawner should give PatrolPoints to the enemy.
     public Vector3[] GetPatrolPoints()
     {
         return patrolPoints;

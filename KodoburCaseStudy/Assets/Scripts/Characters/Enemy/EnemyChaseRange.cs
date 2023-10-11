@@ -2,10 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class EnemyChaseRange : MonoBehaviour
 {
-    [SerializeField] private Enemy _enemy;
+    [SerializeField] private Enemy enemy;
     private Player _player;
     private void Awake()
     {
@@ -14,13 +15,13 @@ public class EnemyChaseRange : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (Physics.Raycast(_enemy.transform.position,_player.transform.position-_enemy.transform.position,out var hit))
+        if (Physics.Raycast(enemy.transform.position,_player.transform.position-enemy.transform.position,out var hit))
         {
             if (hit.transform.TryGetComponent(out Player player))
             {
-                if (_enemy.GetCurrentState() is PatrolState)
+                if (enemy.GetCurrentState() is PatrolState)
                 {
-                    _enemy.ChasePlayer();
+                    enemy.ChasePlayer();
                 }
                 
             }
@@ -29,13 +30,13 @@ public class EnemyChaseRange : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (_enemy.GetCurrentState() is not ChaseState)
+        if (enemy.GetCurrentState() is not ChaseState)
         {
             return;
         }
         if (other.TryGetComponent(out Player player))
         {
-            _enemy.ReturnToYourPatrol();
+            enemy.ReturnToYourPatrol();
         }
     }
 }
