@@ -10,4 +10,20 @@ public class Health : Collectible
         player.Heal(contentAmount);
         ReturnToPool();
     }
+
+    public override void Spawn(SpawnLocation spawnLocation)
+    {
+        base.Spawn(spawnLocation);
+        SetAmount(gameSettings.healthAmountForEachCollectible);
+    }
+
+    public override void SetCooldown()
+    {
+        SpawnCooldown = gameSettings.spawnCooldownForHealth;
+    }
+
+    public override int MaxAmount()
+    {
+        return gameSettings.maxHealthAmount;
+    }
 }

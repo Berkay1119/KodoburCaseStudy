@@ -15,4 +15,6 @@ public class GameSettings:ScriptableObject
     public float spawnCooldownForHealth;
     public int maxAmmoAmount=3;
     public int maxHealthAmount=1;
+    public float enemySpawnCooldown=10;
+    public int maxEnemyAmount = 5;
 }

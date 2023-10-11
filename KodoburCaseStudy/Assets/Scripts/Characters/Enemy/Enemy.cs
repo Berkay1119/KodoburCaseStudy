@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : Character
+public class Enemy : Character, ISpawnable
 {
     [SerializeField] private NavMeshAgent navMeshAgent;
     [SerializeField] private Vector3[]patrolPoints;
@@ -12,15 +12,15 @@ public class Enemy : Character
     private EnemyState _state;
     private Player _player;
 
-    private void Start()
+    private void Awake()
     {
         _player = FindObjectOfType<Player>();
-        _state = new PatrolState(this, navMeshAgent, _player);
+        SetCooldown();
     }
 
     private void Update()
     {
-        _state.OnUpdate();
+        _state?.OnUpdate();
     }
 
     protected override void Die()
@@ -73,5 +73,40 @@ public class Enemy : Character
     public EnemyState GetCurrentState()
     {
         return _state;
+    }
+
+    public SpawnLocation SpawnLocation { get; set; }
+    public float SpawnCooldown { get; set; }
+    public void ReturnToPool()
+    {
+        gameObject.SetActive(false);
+        if (SpawnLocation!=null)
+        {
+            SpawnLocation.MakeSpawnPointFull(false);
+        }
+        _state = null;
+    }
+
+    public void Spawn(SpawnLocation spawnLocation)
+    {
+        transform.position = spawnLocation.transform.position;
+        SpawnLocation= spawnLocation;
+        gameObject.SetActive(true);
+        _state = new PatrolState(this, navMeshAgent, _player);
+    }
+
+    public void SetCooldown()
+    {
+        SpawnCooldown = gameSettings.enemySpawnCooldown;
+    }
+
+    public bool IsActive()
+    {
+        return gameObject.activeInHierarchy;
+    }
+
+    public int MaxAmount()
+    {
+        return gameSettings.maxEnemyAmount;
     }
 }

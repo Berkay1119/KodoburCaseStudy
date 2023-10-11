@@ -20,3 +20,5 @@ MonoBehaviour:
   spawnCooldownForHealth: 5
   maxAmmoAmount: 3
   maxHealthAmount: 1
+  enemySpawnCooldown: 10
+  maxEnemyAmount: 1
