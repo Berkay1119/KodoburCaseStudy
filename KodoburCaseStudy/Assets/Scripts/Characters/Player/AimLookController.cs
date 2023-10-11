@@ -17,6 +17,21 @@ public class AimLookController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    private void OnEnable()
+    {
+        EventManager.PlayerDied += Stop;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.PlayerDied += Stop;
+    }
+
+    private void Stop()
+    {
+        this.enabled=false;
+    }
+
     void Update()
     {
         float mouseX = -Input.GetAxis("Mouse X") * sensitivity;

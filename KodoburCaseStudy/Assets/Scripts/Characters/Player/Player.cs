@@ -8,6 +8,8 @@ public class Player : Character
     [SerializeField] private int killCount;
     [SerializeField] private int talentPoints;
     [SerializeField] private Gun gun;
+    private int _level=1;
+    private bool _isDead;
 
     private void Awake()
     {
@@ -34,11 +36,24 @@ public class Player : Character
 
     private void CalculateLevel()
     {
-        
+        if (gameSettings.levelPassXp[_level-1]<=experiencePoint)
+        {
+            if (_level!=gameSettings.levelPassXp.Length)
+            {
+                experiencePoint = 0;
+            }
+            _level++;
+            _level = Mathf.Clamp(_level,0, gameSettings.levelPassXp.Length);
+        }
+        EventManager.OnLevelUpdate((float)experiencePoint/gameSettings.levelPassXp[_level-1],_level);
     }
 
     private void Update()
     {
+        if (_isDead)
+        {
+            return;
+        }
         if (Input.GetButtonDown("Fire1"))
         {
             gun.Shoot();
@@ -46,6 +61,7 @@ public class Player : Character
     }
     protected override void Die()
     {
+        _isDead = true;
         EventManager.OnPlayerDied();
     }
 

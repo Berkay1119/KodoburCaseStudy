@@ -23,6 +23,22 @@ public class Enemy : Character, ISpawnable
         enemyHealthCanvas.RefreshHealth(1);
     }
 
+    private void OnEnable()
+    {
+        EventManager.PlayerDied += Stop;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.PlayerDied -= Stop;
+    }
+
+    private void Stop()
+    {
+        _state = null;
+        StopAllCoroutines();
+    }
+
     private void Update()
     {
         _state?.OnUpdate();

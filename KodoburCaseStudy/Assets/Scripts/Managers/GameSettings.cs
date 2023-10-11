@@ -1,5 +1,6 @@
 ﻿
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Game Settings")]
 public class GameSettings:ScriptableObject
@@ -18,4 +19,8 @@ public class GameSettings:ScriptableObject
     public float enemySpawnCooldown=10;
     public int maxEnemyAmount = 5;
     public bool isEnemyMovementRandom;
+
+    [Header("Level Settings")] 
+    public int[] levelPassXp;
+    
 }

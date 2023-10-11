@@ -12,6 +12,21 @@ public class PlayerMovementController : MonoBehaviour
     private bool _onJump;
     
     //TODO: Revise this script.
+    
+    private void OnEnable()
+    {
+        EventManager.PlayerDied += Stop;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.PlayerDied += Stop;
+    }
+
+    private void Stop()
+    {
+        this.enabled=false;
+    }
     private void Update()
     {
         _moveVector= new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));

@@ -17,6 +17,7 @@ public class Gun : MonoBehaviour
     private void Start()
     {
         currentBullet = startingBullet;
+        EventManager.OnAmmoUpdate(currentBullet);
     }
     
 
@@ -24,7 +25,7 @@ public class Gun : MonoBehaviour
     {
         if (currentBullet == 0) { return; }
         currentBullet -= 1;
-        
+        EventManager.OnAmmoUpdate(currentBullet);
         Ray ray = playerCamera.ScreenPointToRay(new Vector3((float)Screen.width / 2, (float)Screen.height / 2, 0));
         if (Physics.Raycast(ray,out var hit))
         {
@@ -46,12 +47,13 @@ public class Gun : MonoBehaviour
     public int AddBulletReturnExcessive(int amount)
     {
         currentBullet += amount;
+        int excessiveBullet = 0;
         if (currentBullet>maximumBullet)
         {
-            int excessiveBullet = currentBullet - maximumBullet;
+             excessiveBullet = currentBullet - maximumBullet;
             currentBullet = maximumBullet;
-            return excessiveBullet;
         }
-        return 0;
+        EventManager.OnAmmoUpdate(currentBullet);
+        return excessiveBullet;
     }
 }

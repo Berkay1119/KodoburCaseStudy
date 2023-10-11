@@ -36,6 +36,13 @@ public class Spawner : MonoBehaviour
         {
             EventManager.EnemyDied += StartSpawnCooldown;
         }
+
+        EventManager.PlayerDied += Stop;
+    }
+
+    private void Stop()
+    {
+        StopAllCoroutines();
     }
 
     private void OnDisable()
@@ -49,6 +56,8 @@ public class Spawner : MonoBehaviour
         {
             EventManager.EnemyDied -= StartSpawnCooldown;
         }
+        
+        EventManager.PlayerDied -= Stop;
     }
 
     private void CreatePool()
