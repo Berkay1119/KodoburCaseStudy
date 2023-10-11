@@ -14,6 +14,7 @@ public class Enemy : Character, ISpawnable
     private EnemyPatrolManager _patrolManager;
     [SerializeField] private EnemyHealthCanvas enemyHealthCanvas;
     [SerializeField] private Animator animator;
+    [SerializeField] private Transform gun;
 
     private void Awake()
     {
@@ -67,7 +68,7 @@ public class Enemy : Character, ISpawnable
         {
             yield return new WaitForSeconds(gameSettings.enemyShootCooldown);
             TrailRenderer bullet=Instantiate(bulletPrefab);
-            var position = transform.position;
+            var position = gun.transform.position;
             bullet.AddPosition(position);
             {
                 bullet.transform.position = (_player.transform.position);

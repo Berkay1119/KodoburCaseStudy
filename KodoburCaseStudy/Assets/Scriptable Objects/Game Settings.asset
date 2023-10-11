@@ -22,7 +22,7 @@ MonoBehaviour:
   maxHealthAmount: 1
   enemySpawnCooldown: 10
   maxEnemyAmount: 1
-  isEnemyMovementRandom: 0
+  isEnemyMovementRandom: 1
   levelPassXp: 64000000640000006400000064000000581b0000
   pierceShotTalentPoint: 3
   speedTalentLevels:
