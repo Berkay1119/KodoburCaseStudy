@@ -23,8 +23,7 @@ MonoBehaviour:
   enemySpawnCooldown: 10
   maxEnemyAmount: 5
   isEnemyMovementRandom: 1
-  levelPassXp: 64000000640000006400000064000000581b0000
-  pierceShotTalentPoint: 3
+  levelPassXp: c80000002c010000f4010000e8030000d0070000b80b0000a00f00008813000070170000581b0000401f000010270000
   speedTalentLevels:
   - newWalkSpeed: 2
     newRunSpeed: 5

@@ -565,6 +565,10 @@ PrefabInstance:
       value: HUD
       objectReference: {fileID: 0}
     - target: {fileID: 4050816478255647116, guid: de82e3f9cc05cf044821effb88a94d52, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050816478255647116, guid: de82e3f9cc05cf044821effb88a94d52, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}

@@ -17,7 +17,7 @@ public class Player : Character
         maxHp = gameSettings.maxHealthLevels[_healthLevel];
         currentHp = maxHp;
         experiencePoint = 0;
-        EventManager.OnRefreshHealthUI(1);
+        EventManager.OnRefreshHealthUI(1f);
     }
 
     private void OnEnable()
