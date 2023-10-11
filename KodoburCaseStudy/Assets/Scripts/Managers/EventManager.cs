@@ -10,12 +10,18 @@ public class EventManager : MonoBehaviour
     public delegate void FloatEvent(float floatNumber);
     public delegate void IntEvent(int integer);
     public delegate void LevelEvent(float levelRatio,int levelCount);
+    public delegate void UpgradeEvent(Upgrades upgrades);
     public static event EnemyEvent EnemyDied;
     public static event Action PlayerDied;
     public static event FloatEvent RefreshHealthUI;
     public static event CollectibleEvent CollectibleCollected;
     public static event LevelEvent LevelUpdate;
     public static event IntEvent AmmoUpdate;
+    public static event UpgradeEvent Upgrade;
+    public static event UpgradeEvent MaxUpgradeReached;
+    public static event IntEvent TalentGained;
+    public static event Action StopPlayerControl;
+    public static event Action StartPlayerControl;
 
     public static void OnEnemyDied(Enemy enemy)
     {
@@ -45,6 +51,31 @@ public class EventManager : MonoBehaviour
     public static void OnAmmoUpdate(int integer)
     {
         AmmoUpdate?.Invoke(integer);
+    }
+
+    public static void OnUpgrade(Upgrades upgrades)
+    {
+        Upgrade?.Invoke(upgrades);
+    }
+
+    public static void OnTalentGained(int integer)
+    {
+        TalentGained?.Invoke(integer);
+    }
+
+    public static void OnMaxUpgradeReached(Upgrades upgrades)
+    {
+        MaxUpgradeReached?.Invoke(upgrades);
+    }
+
+    public static void OnStopPlayerControl()
+    {
+        StopPlayerControl?.Invoke();
+    }
+
+    private static void OnStartPlayerControl()
+    {
+        StartPlayerControl?.Invoke();
     }
 }
 

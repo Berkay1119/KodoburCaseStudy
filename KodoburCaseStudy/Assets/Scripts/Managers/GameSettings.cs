@@ -1,4 +1,5 @@
 ﻿
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -22,5 +23,18 @@ public class GameSettings:ScriptableObject
 
     [Header("Level Settings")] 
     public int[] levelPassXp;
+    public int pierceShotTalentPoint;
     
+    [Header("Character Talents")]
+    public SpeedTalent[] speedTalentLevels;
+    public float[] jumpHeightLevels;
+    public int[] maxHealthLevels;
+    
+}
+
+[Serializable]
+public struct SpeedTalent
+{
+    public int newWalkSpeed;
+    public int newRunSpeed;
 }

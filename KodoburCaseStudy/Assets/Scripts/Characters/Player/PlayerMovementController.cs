@@ -8,19 +8,62 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float playerWalkSpeed;
     [SerializeField] private float playerRunSpeed;
     [SerializeField] private float jumpHeight;
+    [SerializeField] private GameSettings gameSettings;
     private Vector3 _moveVector;
     private bool _onJump;
-    
+    private int _movementLevel;
+    private int _jumpLevel;
+
     //TODO: Revise this script.
-    
+
+    private void Awake()
+    {
+        playerWalkSpeed = gameSettings.speedTalentLevels[_movementLevel].newWalkSpeed;
+        playerRunSpeed = gameSettings.speedTalentLevels[_movementLevel].newRunSpeed;
+        jumpHeight = gameSettings.jumpHeightLevels[_jumpLevel];
+    }
+
     private void OnEnable()
     {
         EventManager.PlayerDied += Stop;
+        EventManager.Upgrade += Upgrade;
+        EventManager.StopPlayerControl += Stop;
+        EventManager.StartPlayerControl += StartControl;
     }
-
     private void OnDisable()
     {
-        EventManager.PlayerDied += Stop;
+        EventManager.PlayerDied -= Stop;
+        EventManager.Upgrade -= Upgrade;
+        EventManager.StopPlayerControl -= Stop;
+        EventManager.StartPlayerControl -= StartControl;
+    }
+
+    private void StartControl()
+    {
+        this.enabled = true;
+    }
+
+    private void Upgrade(Upgrades upgrades)
+    {
+        if (upgrades==Upgrades.MovementUpgrade)
+        {
+            _movementLevel++;
+            playerWalkSpeed = gameSettings.speedTalentLevels[_movementLevel].newWalkSpeed;
+            playerRunSpeed = gameSettings.speedTalentLevels[_movementLevel].newRunSpeed;
+            if (gameSettings.speedTalentLevels.Length-1==_movementLevel)
+            {
+                EventManager.OnMaxUpgradeReached(Upgrades.MovementUpgrade);
+            }
+        }
+        else if (upgrades==Upgrades.JumpUpgrade)
+        {
+            _jumpLevel++;
+            jumpHeight = gameSettings.jumpHeightLevels[_jumpLevel];
+            if (gameSettings.jumpHeightLevels.Length-1==_jumpLevel)
+            {
+                EventManager.OnMaxUpgradeReached(Upgrades.JumpUpgrade);
+            }
+        }
     }
 
     private void Stop()

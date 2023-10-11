@@ -9,10 +9,13 @@ public class Player : Character
     [SerializeField] private int talentPoints;
     [SerializeField] private Gun gun;
     private int _level=1;
-    private bool _isDead;
+    private bool _isStopped;
+    private int _healthLevel;
 
     private void Awake()
     {
+        maxHp = gameSettings.maxHealthLevels[_healthLevel];
+        currentHp = maxHp;
         experiencePoint = 0;
         EventManager.OnRefreshHealthUI(1);
     }
@@ -20,12 +23,42 @@ public class Player : Character
     private void OnEnable()
     {
         EventManager.EnemyDied += EnemyKilled;
+        EventManager.Upgrade += Upgrade;
+        EventManager.StopPlayerControl += Stop;
+        EventManager.StartPlayerControl += StartPlayerControl;
     }
-
     private void OnDisable()
     {
         EventManager.EnemyDied -= EnemyKilled;
+        EventManager.Upgrade -= Upgrade;
+        EventManager.StopPlayerControl -= Stop;
+        EventManager.StartPlayerControl -= StartPlayerControl;
     }
+
+    private void StartPlayerControl()
+    {
+        _isStopped = false;
+    }
+
+    private void Stop()
+    {
+        _isStopped = true;
+    }
+
+    private void Upgrade(Upgrades upgrades)
+    {
+        if (upgrades==Upgrades.HealthUpgrade)
+        {
+            _healthLevel++;
+            maxHp = gameSettings.maxHealthLevels[_healthLevel];
+            if (gameSettings.maxHealthLevels.Length-1==_healthLevel)
+            {
+                EventManager.OnMaxUpgradeReached(Upgrades.HealthUpgrade);
+            }
+        }
+    }
+
+
 
     private void EnemyKilled(Enemy enemy)
     {
@@ -43,6 +76,8 @@ public class Player : Character
                 experiencePoint = 0;
             }
             _level++;
+            talentPoints++;
+            EventManager.OnTalentGained(talentPoints);
             _level = Mathf.Clamp(_level,0, gameSettings.levelPassXp.Length);
         }
         EventManager.OnLevelUpdate((float)experiencePoint/gameSettings.levelPassXp[_level-1],_level);
@@ -50,7 +85,7 @@ public class Player : Character
 
     private void Update()
     {
-        if (_isDead)
+        if (_isStopped)
         {
             return;
         }
@@ -61,7 +96,7 @@ public class Player : Character
     }
     protected override void Die()
     {
-        _isDead = true;
+        _isStopped = true;
         EventManager.OnPlayerDied();
     }
 

@@ -72,6 +72,7 @@ MonoBehaviour:
   playerWalkSpeed: 3
   playerRunSpeed: 8
   jumpHeight: 10
+  gameSettings: {fileID: 11400000, guid: ff382bef29d61534c914f8335f8cce5f, type: 2}
 --- !u!114 &6779764011594328010
 MonoBehaviour:
   m_ObjectHideFlags: 0
