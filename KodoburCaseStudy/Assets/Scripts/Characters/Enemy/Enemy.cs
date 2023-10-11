@@ -12,12 +12,15 @@ public class Enemy : Character, ISpawnable
     private EnemyState _state;
     private Player _player;
     private EnemyPatrolManager _patrolManager;
+    [SerializeField] private EnemyHealthCanvas enemyHealthCanvas;
 
     private void Awake()
     {
         _patrolManager = FindObjectOfType<EnemyPatrolManager>();
         _player = FindObjectOfType<Player>();
         SetCooldown();
+        enemyHealthCanvas.SetPlayer(_player);
+        enemyHealthCanvas.RefreshHealth(1);
     }
 
     private void Update()
@@ -101,6 +104,7 @@ public class Enemy : Character, ISpawnable
         currentHp = maxHp;
         transform.position = spawnLocation.transform.position;
         SpawnLocation= spawnLocation;
+        enemyHealthCanvas.RefreshHealth(1);
         gameObject.SetActive(true);
         _state = new PatrolState(this, navMeshAgent, _player);
     }
@@ -128,5 +132,11 @@ public class Enemy : Character, ISpawnable
     public Vector3 GetRandomPatrolPoint()
     {
         return _patrolManager.GetRandomPatrolPoint().position;
+    }
+
+    public override void TakeDamage(int damageAmount)
+    {
+        base.TakeDamage(damageAmount);
+        enemyHealthCanvas.RefreshHealth((float)currentHp / maxHp);
     }
 }
