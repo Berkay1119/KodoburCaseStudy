@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
 {
@@ -97,6 +97,7 @@ public class Spawner : MonoBehaviour
 
     private void SpawnFrom(List<ISpawnable> spawnables)
     {
+        ShuffleSpawnLocations();
         foreach (var spawnable in spawnables)
         {
             if (!spawnable.IsActive())
@@ -111,6 +112,15 @@ public class Spawner : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    private void ShuffleSpawnLocations()
+    {
+        for (int i = 0; i < candidateSpawnLocations.Length; i++)
+        {
+            int j = Random.Range(0,candidateSpawnLocations.Length);
+            (candidateSpawnLocations[i], candidateSpawnLocations[j]) = (candidateSpawnLocations[j], candidateSpawnLocations[i]);
         }
     }
     
