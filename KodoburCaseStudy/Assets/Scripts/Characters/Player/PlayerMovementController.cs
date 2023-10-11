@@ -19,9 +19,8 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Awake()
     {
-        playerWalkSpeed = gameSettings.speedTalentLevels[_movementLevel].newWalkSpeed;
-        playerRunSpeed = gameSettings.speedTalentLevels[_movementLevel].newRunSpeed;
-        jumpHeight = gameSettings.jumpHeightLevels[_jumpLevel];
+        SetSpeedLevel();
+        SetJumpLevel();
     }
 
     private void OnEnable()
@@ -49,21 +48,31 @@ public class PlayerMovementController : MonoBehaviour
         if (upgrades==Upgrades.MovementUpgrade)
         {
             _movementLevel++;
-            playerWalkSpeed = gameSettings.speedTalentLevels[_movementLevel].newWalkSpeed;
-            playerRunSpeed = gameSettings.speedTalentLevels[_movementLevel].newRunSpeed;
-            if (gameSettings.speedTalentLevels.Length-1==_movementLevel)
-            {
-                EventManager.OnMaxUpgradeReached(Upgrades.MovementUpgrade);
-            }
+            SetSpeedLevel();
         }
         else if (upgrades==Upgrades.JumpUpgrade)
         {
             _jumpLevel++;
-            jumpHeight = gameSettings.jumpHeightLevels[_jumpLevel];
-            if (gameSettings.jumpHeightLevels.Length-1==_jumpLevel)
-            {
-                EventManager.OnMaxUpgradeReached(Upgrades.JumpUpgrade);
-            }
+            
+        }
+    }
+
+    private void SetSpeedLevel()
+    {
+        playerWalkSpeed = gameSettings.speedTalentLevels[_movementLevel].newWalkSpeed;
+        playerRunSpeed = gameSettings.speedTalentLevels[_movementLevel].newRunSpeed;
+        if (gameSettings.speedTalentLevels.Length-1==_movementLevel)
+        {
+            EventManager.OnMaxUpgradeReached(Upgrades.MovementUpgrade);
+        }
+    }
+
+    private void SetJumpLevel()
+    {
+        jumpHeight = gameSettings.jumpHeightLevels[_jumpLevel];
+        if (gameSettings.jumpHeightLevels.Length-1==_jumpLevel)
+        {
+            EventManager.OnMaxUpgradeReached(Upgrades.JumpUpgrade);
         }
     }
 

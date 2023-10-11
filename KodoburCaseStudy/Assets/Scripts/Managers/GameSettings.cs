@@ -29,7 +29,9 @@ public class GameSettings:ScriptableObject
     public SpeedTalent[] speedTalentLevels;
     public float[] jumpHeightLevels;
     public int[] maxHealthLevels;
-    
+    public int[] damageAmountLevels;
+    public int[] ammoCapacity;
+
 }
 
 [Serializable]

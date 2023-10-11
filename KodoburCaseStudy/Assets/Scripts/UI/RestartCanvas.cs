@@ -9,6 +9,7 @@ public class RestartCanvas : MonoBehaviour
 {
     [SerializeField] private GameObject failGameObject;
     [SerializeField] private GameObject button;
+    [SerializeField] private GameObject backgroundCanvas;
 
     private void OnEnable()
     {
@@ -22,6 +23,7 @@ public class RestartCanvas : MonoBehaviour
 
     private void Show()
     {
+        backgroundCanvas.SetActive(true);
         failGameObject.SetActive(true);
         button.SetActive(true);
         Cursor.lockState = CursorLockMode.None;

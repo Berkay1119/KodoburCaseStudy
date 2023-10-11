@@ -13,13 +13,65 @@ public class Gun : MonoBehaviour
     [SerializeField] private int currentBullet;
     [SerializeField] private TrailRenderer bulletPrefab;
     [SerializeField] private Transform gunTip;
+    [SerializeField] private GameSettings gameSettings;
+    private int _ammoLevel=0;
+    private int _damageLevel=0;
+    [SerializeField] private bool isPierceActive;
+
 
     private void Start()
     {
         currentBullet = startingBullet;
         EventManager.OnAmmoUpdate(currentBullet);
+        SetAmmoLevel(_ammoLevel);
+        SetDamageLevel(_damageLevel);
     }
-    
+
+    private void OnEnable()
+    {
+        EventManager.Upgrade+=Upgrade;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.Upgrade-=Upgrade;
+    }
+
+    private void Upgrade(Upgrades upgrades)
+    {
+        switch (upgrades)
+        {
+            case Upgrades.AmmoUpgrade:
+                _ammoLevel++;
+                SetAmmoLevel(_ammoLevel);
+                break;
+            case Upgrades.DamageUpgrade:
+                _damageLevel++;
+                SetDamageLevel(_damageLevel);
+                break;
+            case Upgrades.PierceShotUpgrade:
+                isPierceActive = true;
+                break;
+        }
+    }
+
+    private void SetDamageLevel(int damageLevel)
+    {
+        attackDamage = gameSettings.damageAmountLevels[damageLevel];
+        if (damageLevel==gameSettings.damageAmountLevels.Length-1)
+        {
+            EventManager.OnMaxUpgradeReached(Upgrades.DamageUpgrade);
+        }
+    }
+
+    private void SetAmmoLevel(int ammoLevel)
+    {
+        maximumBullet = gameSettings.ammoCapacity[ammoLevel];
+        if (ammoLevel==gameSettings.ammoCapacity.Length-1)
+        {
+            EventManager.OnMaxUpgradeReached(Upgrades.AmmoUpgrade);
+        }
+    }
 
     public void Shoot()
     {
@@ -33,7 +85,20 @@ public class Gun : MonoBehaviour
             if (hit.transform.TryGetComponent(out EnemyHitBox enemyHitBox))
             {
                 enemyHitBox.TakeDamage(attackDamage);
+                if (isPierceActive)
+                {
+                    if (Physics.Raycast(hit.transform.position,(hit.transform.position-transform.position).normalized, out var secondHit))
+                    {
+                        print(secondHit.transform.name + " has been shot");
+                        if (secondHit.transform.TryGetComponent(out EnemyHitBox secondEnemyHitBox))
+                        {
+                            secondEnemyHitBox.TakeDamage(attackDamage);
+                        }
+                    }
+                }
             }
+
+           
         }
         
         TrailRenderer bullet=Instantiate(bulletPrefab);

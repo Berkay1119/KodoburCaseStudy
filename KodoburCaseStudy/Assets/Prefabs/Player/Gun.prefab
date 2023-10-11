@@ -85,6 +85,7 @@ MonoBehaviour:
   currentBullet: 0
   bulletPrefab: {fileID: 6670010285891972953, guid: b474606ec76a6fb408d24b6d3afd19da, type: 3}
   gunTip: {fileID: 7985440955271948828}
+  gameSettings: {fileID: 11400000, guid: ff382bef29d61534c914f8335f8cce5f, type: 2}
 --- !u!23 &3887182686028075321
 MeshRenderer:
   m_ObjectHideFlags: 0

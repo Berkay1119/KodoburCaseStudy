@@ -7,6 +7,7 @@ public class TalentCanvas : MonoBehaviour
 {
     [SerializeField] private GameObject characterUpgradeLayout;
     [SerializeField] private GameObject gunUpgradeLayout;
+    [SerializeField] private GameObject backgroundCanvas;
     private int _talentPoint;
 
     private void OnEnable()
@@ -31,6 +32,7 @@ public class TalentCanvas : MonoBehaviour
         {
             characterUpgradeLayout.SetActive(!characterUpgradeLayout.activeInHierarchy);
             gunUpgradeLayout.SetActive(!gunUpgradeLayout.activeInHierarchy);
+            backgroundCanvas.SetActive(!backgroundCanvas.activeInHierarchy);
             if (characterUpgradeLayout.activeInHierarchy)
             {
                 EventManager.OnStopPlayerControl();
