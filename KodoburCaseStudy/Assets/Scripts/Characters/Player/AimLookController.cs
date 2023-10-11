@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,12 @@ public class AimLookController : MonoBehaviour
     [SerializeField] private float sensitivity;
     private float _rotationAroundX;
     private float _rotationAroundY;
-    
+
+    private void Awake()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     void Update()
     {
         float mouseX = -Input.GetAxis("Mouse X") * sensitivity;

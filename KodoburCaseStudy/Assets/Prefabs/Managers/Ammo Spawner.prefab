@@ -100,6 +100,7 @@ MonoBehaviour:
   - {fileID: 1493281854607541051}
   - {fileID: 7294805319835635188}
   - {fileID: 2135493668640800159}
+  spawnerType: 2
 --- !u!1 &4986287886926786140
 GameObject:
   m_ObjectHideFlags: 0

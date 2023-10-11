@@ -17,4 +17,5 @@ public class GameSettings:ScriptableObject
     public int maxHealthAmount=1;
     public float enemySpawnCooldown=10;
     public int maxEnemyAmount = 5;
+    public bool isEnemyMovementRandom;
 }

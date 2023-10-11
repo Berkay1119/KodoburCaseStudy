@@ -7,13 +7,14 @@ using UnityEngine.AI;
 public class Enemy : Character, ISpawnable
 {
     [SerializeField] private NavMeshAgent navMeshAgent;
-    [SerializeField] private Vector3[]patrolPoints;
     [SerializeField] private int attackDamage;
     private EnemyState _state;
     private Player _player;
+    private EnemyPatrolManager _patrolManager;
 
     private void Awake()
     {
+        _patrolManager = FindObjectOfType<EnemyPatrolManager>();
         _player = FindObjectOfType<Player>();
         SetCooldown();
     }
@@ -48,9 +49,9 @@ public class Enemy : Character, ISpawnable
     }
 
     //TODO: EnemySpawner should give PatrolPoints to the enemy.
-    public Vector3[] GetPatrolPoints()
+    public PatrolPoints GetPatrolPoints()
     {
-        return patrolPoints;
+        return _patrolManager.GetPatrolPoints();
     }
 
     public void ChasePlayer()
@@ -108,5 +109,15 @@ public class Enemy : Character, ISpawnable
     public int MaxAmount()
     {
         return gameSettings.maxEnemyAmount;
+    }
+
+    public bool IsMovementRandom()
+    {
+        return gameSettings.isEnemyMovementRandom;
+    }
+
+    public Vector3 GetRandomPatrolPoint()
+    {
+        return _patrolManager.GetRandomPatrolPoint().position;
     }
 }

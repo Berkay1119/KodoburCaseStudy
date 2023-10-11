@@ -26,9 +26,9 @@ public class Gun : MonoBehaviour
         if (Physics.Raycast(ray,out var hit))
         {
             print(hit.transform.name+" has been shot");
-            if (hit.transform.TryGetComponent(out Character character))
+            if (hit.transform.TryGetComponent(out EnemyHitBox enemyHitBox))
             {
-                character.TakeDamage(attackDamage);
+                enemyHitBox.TakeDamage(attackDamage);
             }
         }
     }

@@ -15,6 +15,8 @@ public class Spawner : MonoBehaviour
     [SerializeField] private SpawnLocation[] candidateSpawnLocations;
 
     private List<ISpawnable> _pool = new List<ISpawnable>();
+    
+    [SerializeField] private SpawnerType spawnerType;
 
 
     private void Start()
@@ -25,14 +27,28 @@ public class Spawner : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.CollectibleCollected += StartSpawnCooldown;
-        EventManager.EnemyDied += StartSpawnCooldown;
+        if (spawnerType==SpawnerType.Ammo || spawnerType == SpawnerType.Health)
+        {
+            EventManager.CollectibleCollected += StartSpawnCooldown;
+        }
+        
+        if (spawnerType==SpawnerType.Enemy)
+        {
+            EventManager.EnemyDied += StartSpawnCooldown;
+        }
     }
 
     private void OnDisable()
     {
-        EventManager.CollectibleCollected -= StartSpawnCooldown;
-        EventManager.EnemyDied -= StartSpawnCooldown;
+        if (spawnerType==SpawnerType.Ammo || spawnerType == SpawnerType.Health)
+        {
+            EventManager.CollectibleCollected -= StartSpawnCooldown;
+        }
+        
+        if (spawnerType==SpawnerType.Enemy)
+        {
+            EventManager.EnemyDied -= StartSpawnCooldown;
+        }
     }
 
     private void CreatePool()
@@ -48,7 +64,19 @@ public class Spawner : MonoBehaviour
 
     private void StartSpawnCooldown(ISpawnable spawnable)
     {
-        StartCoroutine(SpawnCooldown(spawnable));
+        if (spawnable is Ammo && spawnerType==SpawnerType.Ammo)
+        {
+            StartCoroutine(SpawnCooldown(spawnable));
+        }
+        else if (spawnable is Health && spawnerType==SpawnerType.Health)
+        {
+            StartCoroutine(SpawnCooldown(spawnable));
+        }
+        else if (spawnable is Enemy && spawnerType==SpawnerType.Enemy)
+        {
+            StartCoroutine(SpawnCooldown(spawnable));
+        }
+        
     }
 
     private IEnumerator SpawnCooldown(ISpawnable spawnable)

@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 public class PatrolState : EnemyState
 {
-    private Vector3[] _patrolPoints;
+    private Transform[] _patrolPoints;
     private int _currentDestinationIndex;
     
 
@@ -15,13 +15,13 @@ public class PatrolState : EnemyState
     
     protected override void OnEnter()
     {
-        _patrolPoints = Enemy.GetPatrolPoints();
+        _patrolPoints = Enemy.GetPatrolPoints().transforms;
         ReturnToTheFirstPatrolPoint();
     }
 
     private void ReturnToTheFirstPatrolPoint()
     {
-        NavMeshAgent.destination = _patrolPoints[0];
+        NavMeshAgent.destination = _patrolPoints[0].position;
         _currentDestinationIndex = 0;
     }
 
@@ -30,7 +30,15 @@ public class PatrolState : EnemyState
         if (NavMeshAgent.remainingDistance<1)
         {
             _currentDestinationIndex++;
-            NavMeshAgent.destination = _patrolPoints[_currentDestinationIndex % _patrolPoints.Length];
+            if (Enemy.IsMovementRandom())
+            {
+                NavMeshAgent.destination = Enemy.GetRandomPatrolPoint();
+            }
+            else
+            {
+                NavMeshAgent.destination = _patrolPoints[_currentDestinationIndex % _patrolPoints.Length].position;
+            }
+            
         }
     }
 
