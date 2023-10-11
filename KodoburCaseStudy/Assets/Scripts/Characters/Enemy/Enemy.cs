@@ -8,6 +8,7 @@ public class Enemy : Character, ISpawnable
 {
     [SerializeField] private NavMeshAgent navMeshAgent;
     [SerializeField] private int attackDamage;
+    [SerializeField] private TrailRenderer bulletPrefab;
     private EnemyState _state;
     private Player _player;
     private EnemyPatrolManager _patrolManager;
@@ -43,6 +44,12 @@ public class Enemy : Character, ISpawnable
     {
         while (true)
         {
+            TrailRenderer bullet=Instantiate(bulletPrefab);
+            var position = transform.position;
+            bullet.AddPosition(position);
+            {
+                bullet.transform.position = (_player.transform.position);
+            }
             _player.TakeDamage(attackDamage);
             yield return new WaitForSeconds(gameSettings.enemyShootCooldown);
         }

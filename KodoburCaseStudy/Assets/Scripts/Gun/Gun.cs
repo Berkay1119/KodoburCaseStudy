@@ -11,6 +11,8 @@ public class Gun : MonoBehaviour
     [SerializeField] private int maximumBullet;
     [SerializeField] private int attackDamage=10;
     [SerializeField] private int currentBullet;
+    [SerializeField] private TrailRenderer bulletPrefab;
+    [SerializeField] private Transform gunTip;
 
     private void Start()
     {
@@ -20,8 +22,10 @@ public class Gun : MonoBehaviour
 
     public void Shoot()
     {
+        
         if (currentBullet == 0) { return; }
         currentBullet -= 1;
+        
         Ray ray = playerCamera.ScreenPointToRay(new Vector3((float)Screen.width / 2, (float)Screen.height / 2, 0));
         if (Physics.Raycast(ray,out var hit))
         {
@@ -31,6 +35,13 @@ public class Gun : MonoBehaviour
                 enemyHitBox.TakeDamage(attackDamage);
             }
         }
+        
+        TrailRenderer bullet=Instantiate(bulletPrefab);
+        bullet.AddPosition(gunTip.position);
+        {
+            bullet.transform.position = gunTip.position + (playerCamera.transform.forward * 200);
+        }
+        
     }
 
     public int AddBulletReturnExcessive(int amount)
