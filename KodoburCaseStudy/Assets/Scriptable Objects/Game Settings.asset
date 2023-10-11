@@ -24,3 +24,22 @@ MonoBehaviour:
   maxEnemyAmount: 5
   isEnemyMovementRandom: 1
   levelPassXp: 64000000f4010000e803000088130000581b0000
+  pierceShotTalentPoint: 0
+  speedTalentLevels:
+  - newWalkSpeed: 2
+    newRunSpeed: 5
+  - newWalkSpeed: 3
+    newRunSpeed: 6
+  - newWalkSpeed: 4
+    newRunSpeed: 7
+  - newWalkSpeed: 5
+    newRunSpeed: 8
+  - newWalkSpeed: 6
+    newRunSpeed: 9
+  jumpHeightLevels:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  maxHealthLevels: 3c00000046000000500000005a00000064000000

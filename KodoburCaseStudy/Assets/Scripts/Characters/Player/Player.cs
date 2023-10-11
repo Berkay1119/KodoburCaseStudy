@@ -47,6 +47,7 @@ public class Player : Character
 
     private void Upgrade(Upgrades upgrades)
     {
+        talentPoints--;
         if (upgrades==Upgrades.HealthUpgrade)
         {
             _healthLevel++;
@@ -56,6 +57,7 @@ public class Player : Character
                 EventManager.OnMaxUpgradeReached(Upgrades.HealthUpgrade);
             }
         }
+        EventManager.OnRefreshTalentPoint(talentPoints);
     }
 
 
@@ -77,7 +79,7 @@ public class Player : Character
             }
             _level++;
             talentPoints++;
-            EventManager.OnTalentGained(talentPoints);
+            EventManager.OnRefreshTalentPoint(talentPoints);
             _level = Mathf.Clamp(_level,0, gameSettings.levelPassXp.Length);
         }
         EventManager.OnLevelUpdate((float)experiencePoint/gameSettings.levelPassXp[_level-1],_level);

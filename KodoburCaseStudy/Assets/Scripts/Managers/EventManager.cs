@@ -19,7 +19,7 @@ public class EventManager : MonoBehaviour
     public static event IntEvent AmmoUpdate;
     public static event UpgradeEvent Upgrade;
     public static event UpgradeEvent MaxUpgradeReached;
-    public static event IntEvent TalentGained;
+    public static event IntEvent RefreshTalentPoint;
     public static event Action StopPlayerControl;
     public static event Action StartPlayerControl;
 
@@ -58,11 +58,6 @@ public class EventManager : MonoBehaviour
         Upgrade?.Invoke(upgrades);
     }
 
-    public static void OnTalentGained(int integer)
-    {
-        TalentGained?.Invoke(integer);
-    }
-
     public static void OnMaxUpgradeReached(Upgrades upgrades)
     {
         MaxUpgradeReached?.Invoke(upgrades);
@@ -73,9 +68,14 @@ public class EventManager : MonoBehaviour
         StopPlayerControl?.Invoke();
     }
 
-    private static void OnStartPlayerControl()
+    public static void OnStartPlayerControl()
     {
         StartPlayerControl?.Invoke();
+    }
+
+    public static void OnRefreshTalentPoint(int integer)
+    {
+        RefreshTalentPoint?.Invoke(integer);
     }
 }
 

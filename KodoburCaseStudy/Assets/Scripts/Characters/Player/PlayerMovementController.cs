@@ -13,6 +13,7 @@ public class PlayerMovementController : MonoBehaviour
     private bool _onJump;
     private int _movementLevel;
     private int _jumpLevel;
+    private bool _isStopped;
 
     //TODO: Revise this script.
 
@@ -40,7 +41,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void StartControl()
     {
-        this.enabled = true;
+        _isStopped = false;
     }
 
     private void Upgrade(Upgrades upgrades)
@@ -68,10 +69,14 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Stop()
     {
-        this.enabled=false;
+        _isStopped=true;
     }
     private void Update()
     {
+        if (_isStopped)
+        {
+            return;
+        }
         _moveVector= new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -81,6 +86,10 @@ public class PlayerMovementController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_isStopped)
+        {
+            return;
+        }
         Move(_moveVector, Input.GetKey(KeyCode.LeftShift) ? playerRunSpeed : playerWalkSpeed);
     }
 

@@ -11,6 +11,7 @@ public class AimLookController : MonoBehaviour
     [SerializeField] private float sensitivity;
     private float _rotationAroundX;
     private float _rotationAroundY;
+    private bool _isStopped;
 
     private void Awake()
     {
@@ -20,20 +21,34 @@ public class AimLookController : MonoBehaviour
     private void OnEnable()
     {
         EventManager.PlayerDied += Stop;
+        EventManager.StopPlayerControl += Stop;
+        EventManager.StartPlayerControl += StartPlayerControl;
     }
+
+
 
     private void OnDisable()
     {
-        EventManager.PlayerDied += Stop;
+        EventManager.PlayerDied -= Stop;
+        EventManager.StopPlayerControl -= Stop;
+        EventManager.StartPlayerControl -= StartPlayerControl;
     }
 
     private void Stop()
     {
-        this.enabled=false;
+        _isStopped=true;
+    }
+    private void StartPlayerControl()
+    {
+        _isStopped=false;
     }
 
     void Update()
     {
+        if (_isStopped)
+        {
+            return;
+        }
         float mouseX = -Input.GetAxis("Mouse X") * sensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
         

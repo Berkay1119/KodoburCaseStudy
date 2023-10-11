@@ -8,19 +8,18 @@ public class UpgradeTalent:MonoBehaviour
 {
     [SerializeField] private int talentCost;
     [SerializeField] private Upgrades upgradeType;
-    [SerializeField] private TextMeshProUGUI textMeshProUGUI;
     [SerializeField] private Button button;
     private bool _isMax;
 
     private void OnEnable()
     {
-        EventManager.TalentGained+=Refresh;
+        EventManager.RefreshTalentPoint+=Refresh;
         EventManager.MaxUpgradeReached += Close;
     }
 
     private void OnDisable()
     {
-        EventManager.TalentGained-=Refresh;
+        EventManager.RefreshTalentPoint-=Refresh;
         EventManager.MaxUpgradeReached -= Close;
     }
 
