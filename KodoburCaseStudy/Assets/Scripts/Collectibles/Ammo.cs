@@ -31,7 +31,7 @@ public class Ammo : Collectible
         }
         else
         {
-            contentAmount = excessiveAmmo;
+            SetAmount(excessiveAmmo);
         }
     }
 }

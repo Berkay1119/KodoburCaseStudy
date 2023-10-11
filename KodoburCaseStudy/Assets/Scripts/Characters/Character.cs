@@ -11,7 +11,7 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected int currentHp=100;
     [SerializeField] protected GameSettings gameSettings;
 
-    public void TakeDamage(int damageAmount)
+    public virtual void TakeDamage(int damageAmount)
     {
         currentHp -= damageAmount;
         if (currentHp<=0)

@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -20.75
       objectReference: {fileID: 0}
+    - target: {fileID: 174841563041300896, guid: 7113008e12116f24ca567a21bb49d87c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 661840881115437043, guid: 7113008e12116f24ca567a21bb49d87c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -64,6 +68,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 19.75
       objectReference: {fileID: 0}
+    - target: {fileID: 4354367484553541745, guid: 7113008e12116f24ca567a21bb49d87c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4378986761298436402, guid: 7113008e12116f24ca567a21bb49d87c, type: 3}
       propertyPath: m_Name
       value: Health Spawner
@@ -73,8 +81,16 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6071927488790563897, guid: 7113008e12116f24ca567a21bb49d87c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6071927488790563897, guid: 7113008e12116f24ca567a21bb49d87c, type: 3}
       propertyPath: m_LocalPosition.z
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962353066543232965, guid: 7113008e12116f24ca567a21bb49d87c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7962353066543232965, guid: 7113008e12116f24ca567a21bb49d87c, type: 3}
       propertyPath: m_LocalPosition.z

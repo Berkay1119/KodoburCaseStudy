@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -8,6 +10,11 @@ public abstract class Collectible : MonoBehaviour,ISpawnable
 {
     [SerializeField] protected int contentAmount;
     [SerializeField] protected GameSettings gameSettings;
+    [SerializeField] private float moveDuration=0.5f;
+    [SerializeField] private float moveAmount=1;
+    [SerializeField] private TextMeshProUGUI contentText;
+    [SerializeField] private Canvas canvas;
+    private Player _player;
 
     public SpawnLocation SpawnLocation { get; set; }
     public float SpawnCooldown { get; set; }
@@ -15,7 +22,10 @@ public abstract class Collectible : MonoBehaviour,ISpawnable
 
     private void Awake()
     {
+        _player = FindObjectOfType<Player>();
+        
         SetCooldown();
+        transform.DOMoveY(transform.position.y + moveAmount, moveDuration).SetLoops(-1,LoopType.Yoyo);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,11 +36,17 @@ public abstract class Collectible : MonoBehaviour,ISpawnable
         }
     }
 
+    private void Update()
+    {
+        canvas.transform.LookAt(_player.transform);
+    }
+
     protected abstract void Collect(Player player);
 
     public void SetAmount(int amount)
     {
         contentAmount = amount;
+        contentText.text = contentAmount.ToString();
     }
     
     public void ReturnToPool()
@@ -47,6 +63,7 @@ public abstract class Collectible : MonoBehaviour,ISpawnable
         transform.position = spawnLocation.transform.position;
         SpawnLocation = spawnLocation;
         gameObject.SetActive(true);
+        contentText.text = contentAmount.ToString();
     }
     public abstract void SetCooldown();
     public bool IsActive()

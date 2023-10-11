@@ -7,9 +7,10 @@ public class EventManager : MonoBehaviour
 {
     public delegate void EnemyEvent(Enemy enemy);
     public delegate void CollectibleEvent(Collectible spawnable);
+    public delegate void FloatEvent(float integer);
     public static event EnemyEvent EnemyDied;
     public static event Action PlayerDied;
-    public static event Action RefreshUI;
+    public static event FloatEvent RefreshHealthUI;
     public static event CollectibleEvent CollectibleCollected;
 
     public static void OnEnemyDied(Enemy enemy)
@@ -22,9 +23,9 @@ public class EventManager : MonoBehaviour
         PlayerDied?.Invoke();
     }
 
-    public static void OnRefreshUI()
+    public static void OnRefreshHealthUI(float x)
     {
-        RefreshUI?.Invoke();
+        RefreshHealthUI?.Invoke(x);
     }
 
     public static void OnCollectibleCollected(Collectible spawnable)

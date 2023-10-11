@@ -22,7 +22,6 @@ public class Gun : MonoBehaviour
 
     public void Shoot()
     {
-        
         if (currentBullet == 0) { return; }
         currentBullet -= 1;
         

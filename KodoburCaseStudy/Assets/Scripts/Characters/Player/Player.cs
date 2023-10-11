@@ -12,6 +12,7 @@ public class Player : Character
     private void Awake()
     {
         experiencePoint = 0;
+        EventManager.OnRefreshHealthUI(1);
     }
 
     private void OnEnable()
@@ -29,7 +30,6 @@ public class Player : Character
         killCount++;
         experiencePoint += enemy.GetExperiencePoint();
         CalculateLevel();
-        EventManager.OnRefreshUI();
     }
 
     private void CalculateLevel()
@@ -53,10 +53,17 @@ public class Player : Character
     {
         currentHp += healAmount;
         currentHp = Mathf.Clamp(currentHp, 0, maxHp);
+        EventManager.OnRefreshHealthUI((float)currentHp/maxHp);
     }
 
     public int AddBulletReturnExcessive(int contentAmount)
     {
         return gun.AddBulletReturnExcessive(contentAmount);
+    }
+
+    public override void TakeDamage(int damageAmount)
+    {
+        base.TakeDamage(damageAmount);
+        EventManager.OnRefreshHealthUI((float)currentHp/maxHp);
     }
 }
