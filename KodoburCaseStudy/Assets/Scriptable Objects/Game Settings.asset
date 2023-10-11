@@ -21,4 +21,5 @@ MonoBehaviour:
   maxAmmoAmount: 3
   maxHealthAmount: 1
   enemySpawnCooldown: 10
-  maxEnemyAmount: 1
+  maxEnemyAmount: 5
+  isEnemyMovementRandom: 0

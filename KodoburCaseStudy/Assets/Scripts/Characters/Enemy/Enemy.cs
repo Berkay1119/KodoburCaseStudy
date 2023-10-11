@@ -28,6 +28,7 @@ public class Enemy : Character, ISpawnable
     protected override void Die()
     {
         EventManager.OnEnemyDied(this);
+        ReturnToPool();
     }
 
     public int GetExperiencePoint()
@@ -97,6 +98,7 @@ public class Enemy : Character, ISpawnable
 
     public void Spawn(SpawnLocation spawnLocation)
     {
+        currentHp = maxHp;
         transform.position = spawnLocation.transform.position;
         SpawnLocation= spawnLocation;
         gameObject.SetActive(true);
