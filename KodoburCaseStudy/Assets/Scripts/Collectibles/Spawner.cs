@@ -19,6 +19,7 @@ public class Spawner : MonoBehaviour
     
     [SerializeField] private SpawnerType spawnerType;
 
+    private int _level=1;
 
     private void Start()
     {
@@ -36,9 +37,28 @@ public class Spawner : MonoBehaviour
         if (spawnerType==SpawnerType.Enemy)
         {
             EventManager.EnemyDied += StartSpawnCooldown;
+            EventManager.LevelUpdate += IncreaseSpawnCount;
         }
 
         EventManager.PlayerDied += Stop;
+    }
+
+    private void IncreaseSpawnCount(float levelRatio, int levelCount)
+    {
+        if (levelCount==_level)
+        {
+            return;
+        }
+        _level = levelCount;
+        AddOneObjectToThePool();
+        SpawnFrom(_pool);
+    }
+
+    private void AddOneObjectToThePool()
+    {
+        ISpawnable spawnable=Instantiate(gameObjectToSpawn, transform).GetComponent<ISpawnable>();
+        spawnable.ReturnToPool();
+        _pool.Add(spawnable);
     }
 
     private void Stop()
@@ -56,6 +76,7 @@ public class Spawner : MonoBehaviour
         if (spawnerType==SpawnerType.Enemy)
         {
             EventManager.EnemyDied -= StartSpawnCooldown;
+            EventManager.LevelUpdate -= IncreaseSpawnCount;
         }
         
         EventManager.PlayerDied -= Stop;
