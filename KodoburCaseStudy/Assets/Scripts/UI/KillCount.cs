@@ -7,12 +7,20 @@ using UnityEngine.Serialization;
 
 public class KillCount : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI textMeshProUGUI;
+    [SerializeField] private TextMeshProUGUI killCountText;
+    [SerializeField] private TextMeshProUGUI highestKillCountText;
     private int _killCount;
+    private SaveSystem _saveSystem;
+    private SaveData _saveData;
+    private int _highestKillCount;
 
     private void Awake()
     {
-        textMeshProUGUI.text = _killCount.ToString();
+        killCountText.text = _killCount.ToString();
+        _saveSystem = new SaveSystem();
+        _saveData=_saveSystem.LoadSaveData();
+        _highestKillCount = _saveData.highestKillCount;
+        highestKillCountText.text = _saveData.highestKillCount.ToString();
     }
 
     private void OnEnable()
@@ -28,6 +36,13 @@ public class KillCount : MonoBehaviour
     private void IncreaseKillCount(Enemy enemy)
     {
         _killCount++;
-        textMeshProUGUI.text = _killCount.ToString();
+        killCountText.text = _killCount.ToString();
+        if (_killCount>_saveData.highestKillCount)
+        {
+            _saveData.highestKillCount = _killCount;
+            _saveSystem.SaveTheData(_saveData);
+            _highestKillCount = _saveData.highestKillCount;
+            highestKillCountText.text = _saveData.highestKillCount.ToString();
+        }
     }
 }
