@@ -82,6 +82,7 @@ MonoBehaviour:
   enemyHealthCanvas: {fileID: 8493298315079025780}
   animator: {fileID: 7381831836825317132}
   gun: {fileID: 2551689732193568991}
+  waitForDying: 4
 --- !u!1 &3773113966787182027
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,8 @@ public class Enemy : Character, ISpawnable
     [SerializeField] private EnemyHealthCanvas enemyHealthCanvas;
     [SerializeField] private Animator animator;
     [SerializeField] private Transform gun;
+    [SerializeField] private float waitForDying;
+    private static readonly int Death = Animator.StringToHash("Death");
 
     private void Awake()
     {
@@ -49,6 +51,15 @@ public class Enemy : Character, ISpawnable
     protected override void Die()
     {
         EventManager.OnEnemyDied(this);
+        StartCoroutine(StartDieRoutine());
+    }
+
+    private IEnumerator StartDieRoutine()
+    {
+        animator.SetTrigger(Death);
+        ChangeState(null);
+        navMeshAgent.destination = transform.position;
+        yield return new WaitForSeconds(waitForDying);
         ReturnToPool();
     }
 
@@ -108,6 +119,10 @@ public class Enemy : Character, ISpawnable
     public float SpawnCooldown { get; set; }
     public void ReturnToPool()
     {
+        if (navMeshAgent.isOnNavMesh)
+        {
+            navMeshAgent.destination = transform.position;
+        }
         gameObject.SetActive(false);
         if (SpawnLocation!=null)
         {
