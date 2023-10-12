@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8b21e32d2a4b8fa31397a291890bd6, type: 3}
+  m_Name: Game Settings
+  m_EditorClassIdentifier: 
+  enemyShootCooldown: 1
+  enemyAttackRadius: 5
+  ammoAmountForEachCollectible: 5
+  healthAmountForEachCollectible: 30
+  spawnCooldownForAmmo: 5
+  spawnCooldownForHealth: 5
+  maxAmmoAmount: 3
+  maxHealthAmount: 1
+  enemySpawnCooldown: 10
+  maxEnemyAmount: 5
+  isEnemyMovementRandom: 1
+  levelPassXp: c80000002c010000f4010000e8030000d0070000b80b0000a00f00008813000070170000581b0000401f000010270000
+  speedTalentLevels:
+  - newWalkSpeed: 2
+    newRunSpeed: 5
+  - newWalkSpeed: 3
+    newRunSpeed: 6
+  - newWalkSpeed: 4
+    newRunSpeed: 7
+  - newWalkSpeed: 5
+    newRunSpeed: 8
+  - newWalkSpeed: 6
+    newRunSpeed: 9
+  jumpHeightLevels:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  maxHealthLevels: 3c00000046000000500000005a00000064000000
+  damageAmountLevels: 1400000032000000460000005000000064000000
+  ammoCapacity: 0500000006000000070000000800000009000000
