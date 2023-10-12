@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyShootCooldown: 1
   enemyAttackRadius: 5
-  ammoAmountForEachCollectible: 3
-  healthAmountForEachCollectible: 10
+  ammoAmountForEachCollectible: 5
+  healthAmountForEachCollectible: 30
   spawnCooldownForAmmo: 5
   spawnCooldownForHealth: 5
   maxAmmoAmount: 3

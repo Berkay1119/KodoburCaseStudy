@@ -77,7 +77,7 @@ MonoBehaviour:
   currentHp: 100
   gameSettings: {fileID: 11400000, guid: ff382bef29d61534c914f8335f8cce5f, type: 2}
   navMeshAgent: {fileID: 4257136001363448831}
-  attackDamage: 2
+  attackDamage: 10
   bulletPrefab: {fileID: 6670010285891972953, guid: b474606ec76a6fb408d24b6d3afd19da, type: 3}
   enemyHealthCanvas: {fileID: 8493298315079025780}
   animator: {fileID: 7381831836825317132}
